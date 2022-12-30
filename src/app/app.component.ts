@@ -23,7 +23,7 @@ export class AppComponent implements OnInit{
     this.userState$ = this.userService.users$().pipe(
       map((response: ApiResponse<Page>) => {
         this.responseSubject.next(response);
-        this.currentPageSubject.next(response.data.page.number)
+        this.currentPageSubject.next(response.data.page.number);
         console.log(response);
         return ({appState: 'APP_LOADED', appData: response});
       }),

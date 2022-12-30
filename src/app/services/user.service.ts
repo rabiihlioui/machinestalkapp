@@ -14,5 +14,5 @@ export class UserService {
 
   // Make call to the backend API to retrieve page of users
   users$ = (gender: string = '', status: string= '', page: number = 0):Observable<ApiResponse<Page>>  =>
-    this.http.get<any>(`${this.serverUrl}/userstest?gender=${gender}&status=${status}&page=${page}`);
+    this.http.get<any>(`${this.serverUrl}/users?gender=${gender}&status=${status}&page=${page}`);
 }
