@@ -13,6 +13,6 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   // Make call to the backend API to retrieve page of users
-  users$ = (gender: string = '', page: number = 0):Observable<ApiResponse<Page>>  =>
-    this.http.get<any>(`${this.serverUrl}/userstest?gender=${gender}&page=${page}`);
+  users$ = (gender: string = '', status: string= '', page: number = 0):Observable<ApiResponse<Page>>  =>
+    this.http.get<any>(`${this.serverUrl}/userstest?gender=${gender}&status=${status}&page=${page}`);
 }

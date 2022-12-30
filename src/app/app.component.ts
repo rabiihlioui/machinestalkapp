@@ -31,8 +31,9 @@ export class AppComponent implements OnInit{
     catchError((error: HttpErrorResponse) => of({appState: 'APP_ERROR', error}))
     )}
 
-    goToPage(gender?: string, pageNumber: number = 0): void {
-      this.userState$ = this.userService.users$(gender, pageNumber).pipe(
+    goToPage(gender?: string, status?: string, pageNumber: number = 0): void {
+      console.log('status ', status)
+      this.userState$ = this.userService.users$(gender, status, pageNumber).pipe(
         map((response: ApiResponse<Page>) => {
           this.responseSubject.next(response);
           this.currentPageSubject.next(pageNumber)
@@ -43,7 +44,7 @@ export class AppComponent implements OnInit{
       catchError((error: HttpErrorResponse) => of({appState: 'APP_ERROR', error}))
       )}
 
-    goToNextOrPrevious(direction?: string, gender?: string): void {
-      this.goToPage(gender, direction === 'forward' ? this.currentPageSubject.value + 1 : this.currentPageSubject.value - 1);
+    goToNextOrPrevious(direction?: string, status?: string, gender?: string): void {
+      this.goToPage(gender, status, direction === 'forward' ? this.currentPageSubject.value + 1 : this.currentPageSubject.value - 1);
     }
 }
